@@ -1,18 +1,26 @@
 let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+let container = document.getElementById("alphabet");
 
 const generateBtnAlphabet = () => {
-    let container = document.getElementById("alphabet");
     for(let i = 0; i < alphabet.length; i++){
-        let char = alphabet[i];
-
         let btn = document.createElement("button");
-        btn.appendChild(document.createTextNode(char));
+        btn.appendChild(document.createTextNode(alphabet[i]));
 
-        let att = document.createAttribute("id");
-        att.value = char;
-        btn.setAttributeNode(att);
+        let id = document.createAttribute("id");
+        id.value = alphabet[i];
+        btn.setAttributeNode(id);
 
         container.appendChild(btn);
+    }
+    setEventToBtn();
+};
+
+const setEventToBtn = () => {
+    let buttons = container.getElementsByTagName("button");
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", () => {
+            alert("Hola soy " + buttons[i].getAttribute("id"));
+        });
     }
 };
 

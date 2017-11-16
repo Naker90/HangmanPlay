@@ -1,0 +1,35 @@
+{
+  "name": "hangmanplay",
+  "version": "0.0.1",
+  "description": "Hangman play in JS",
+  "main": "index.js",
+  "watch": {
+    "compile": "{src,js}/*.js"
+  },
+  "scripts": {
+    "test": "mocha \"./{,!(node_modules)/**/}*.spec.js\" --recursive",
+    "compile": "babel -d src/dist/ src/js/",
+    "watch": "npm-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naker90/HangmanPlay.git"
+  },
+  "keywords": [
+    "Hangman",
+    "play"
+  ],
+  "author": "Antonio SG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Naker90/HangmanPlay/issues"
+  },
+  "homepage": "https://github.com/Naker90/HangmanPlay#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "npm-watch": "^0.3.0"
+  }
+}

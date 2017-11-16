@@ -1,1 +1,25 @@
-body {}
+body {
+    font-family: 'Indie Flower', arial, "Times New Roman";
+    background-color: #464D5B;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+button {
+    background-color: #464D5B;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+}

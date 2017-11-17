@@ -31,7 +31,9 @@ let moviesAndHints = [
 let movie = moviesAndHints[Math.floor(Math.random() * 3)];
 
 let container = document.getElementById("alphabet");
+
 let movieContainer = document.getElementById("movie-title");
+let chars = movieContainer.getElementsByTagName("span");
 
 const generateBtnAlphabet = () => {
     for(let i = 0; i < alphabet.length; i++){
@@ -65,15 +67,33 @@ const setStyleDisabled = btn => {
 };
 
 const checkMovieTitle = (char) => {
-    let chars = movieContainer.getElementsByTagName("span");
     let change = false;
     for(let i = 0; i < chars.length; i++){
-        if(chars[i].getAttribute("name") === char){
+        if(chars[i].getAttribute("name") === char && chars[i].innerHTML === "_"){
             chars[i].innerHTML = char;
             change = true;
         }
     }
-    if(change !== true){lives--}
+    if(change !== true){checkLives()}
+};
+
+const checkLives = () => {
+    let text = document.getElementById("lives");
+    if(lives === 0){
+        text.innerHTML = "You have lost!";
+        showWord();
+    }else{
+        lives--;
+        text.innerHTML = "You have "+ lives + " lives!"
+    }
+};
+
+const showWord = () => {
+    for(let i = 0; i < chars.length; i++){
+        if(chars[i].innerHTML === "_"){
+            chars[i].innerHTML = chars[i].getAttribute("name");
+        }
+    }
 };
 
 const generateWord = () => {

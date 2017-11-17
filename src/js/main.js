@@ -1,30 +1,31 @@
 let lives = 10;
+let hintCounter = 0;
 let alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 let moviesAndHints = [
     {
         title: "hangover",
-        hints: {
-            firstHint: "This comedy features abundant foul language, extreme nudity and extremely offensive sexual references.",
-            secondHint: "Only to wake up and not remember what happened the night before",
-            thirdHint: "Is the story of four male friends who go to Las Vegas to celebrate Doug’s bachelor party"
-        }
+        hints: [
+            "This comedy features abundant foul language, extreme nudity and extremely offensive sexual references.",
+            "Only to wake up and not remember what happened the night before",
+            "Is the story of four male friends who go to Las Vegas to celebrate Doug’s bachelor party"
+        ]
     },
     {
         title: "harry potter",
-        hints: {
-            firstHint: "It's not everyday an adventure comes along that mixes magic, action, friendship, and ... Quidditch.",
-            secondHint: "A film was made for each book in the saga with the exception of the last book",
-            thirdHint: "A film written by J. K. Rowling"
-        }
+        hints: [
+            "It's not everyday an adventure comes along that mixes magic, action, friendship, and ... Quidditch.",
+            "A film was made for each book in the saga with the exception of the last book",
+            "A film written by J. K. Rowling"
+        ]
     },
     {
         title: "taxi driver",
-        hints: {
-            firstHint: "Directed by Martin Scorsese and written by Paul Schrader.",
-            secondHint: "The main actor a lonely and mentally unstable ex-combatant",
-            thirdHint: "The name of main actor is Travis"
-        }
+        hints: [
+            "Directed by Martin Scorsese and written by Paul Schrader.",
+            "The main actor a lonely and mentally unstable ex-combatant",
+            "The name of main actor is Travis"
+        ]
     }
 ];
 
@@ -36,6 +37,7 @@ let movieContainer = document.getElementById("movie-title");
 let chars = movieContainer.getElementsByTagName("span");
 
 let livesText = document.getElementById("lives");
+let hintBtn = document.getElementById("hint");
 
 const generateBtnAlphabet = () => {
     for(let i = 0; i < alphabet.length; i++){
@@ -48,27 +50,27 @@ const generateBtnAlphabet = () => {
 
         container.appendChild(btn);
     }
-    setEventToBtn();
+    _setEventToBtn();
 };
 
-const setEventToBtn = () => {
+const _setEventToBtn = () => {
     let buttons = container.getElementsByTagName("button");
     for(let i = 0; i < buttons.length; i++){
         buttons[i].addEventListener("click", () => {
             let char = buttons[i].getAttribute("id");
-            checkMovieTitle(char);
-            setStyleDisabled(buttons[i])
+            _checkMovieTitle(char);
+            _setStyleDisabled(buttons[i])
         });
     }
 };
 
-const setStyleDisabled = btn => {
+const _setStyleDisabled = btn => {
     let clazz = document.createAttribute("class");
     clazz.value="disabled-button";
     btn.setAttributeNode(clazz);
 };
 
-const checkMovieTitle = (char) => {
+const _checkMovieTitle = (char) => {
     let change = false;
     for(let i = 0; i < chars.length; i++){
         if(chars[i].getAttribute("name") === char && chars[i].innerHTML === "_"){
@@ -76,10 +78,10 @@ const checkMovieTitle = (char) => {
             change = true;
         }
     }
-    (change) ? checkWordProgress() : checkLives();
+    (change) ? _checkWordProgress() : _checkLives();
 };
 
-const checkWordProgress = () => {
+const _checkWordProgress = () => {
     let count = 0;
     for(let i = 0; i < chars.length; i++){
         if(chars[i].innerHTML !== "_"){
@@ -89,17 +91,17 @@ const checkWordProgress = () => {
     if(count === chars.length){livesText.innerHTML = "You Win!";}
 };
 
-const checkLives = () => {
+const _checkLives = () => {
     if(lives === 0){
         livesText.innerHTML = "You have lost!";
-        showWord();
+        _showWord();
     }else{
         lives--;
         livesText.innerHTML = "You have "+ lives + " lives!"
     }
 };
 
-const showWord = () => {
+const _showWord = () => {
     for(let i = 0; i < chars.length; i++){
         if(chars[i].innerHTML === "_"){
             chars[i].innerHTML = chars[i].getAttribute("name");
@@ -122,5 +124,15 @@ const generateWord = () => {
     }
 };
 
+const giveHint = () => {
+    let hints = movie.hints;
+    let hintText = document.getElementById("hint-text");
+    if(hintCounter !== movie.hints.length){
+        hintText.innerHTML = hints[hintCounter];
+        hintCounter++;
+    }
+};
+
 document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
 document.addEventListener("DOMContentLoaded", generateWord);
+hintBtn.addEventListener("click", giveHint);

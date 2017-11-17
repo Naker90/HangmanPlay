@@ -1,66 +1,88 @@
-function ManagerButtons() {
+let lives = 10;
+let alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    let container = document.getElementById("alphabet");
-
-    const generateBtnAlphabet = () => {
-        for(let i = 0; i < alphabet.length; i++){
-            let btn = document.createElement("button");
-            btn.appendChild(document.createTextNode(alphabet[i]));
-
-            let id = document.createAttribute("id");
-            id.value = alphabet[i];
-            btn.setAttributeNode(id);
-
-            container.appendChild(btn);
+let moviesAndHints = [
+    {
+        title: "hangover",
+        hints: {
+            firstHint: "This comedy features abundant foul language, extreme nudity and extremely offensive sexual references.",
+            secondHint: "Only to wake up and not remember what happened the night before",
+            thirdHint: "Is the story of four male friends who go to Las Vegas to celebrate Doug’s bachelor party"
         }
-        setEventToBtn();
-    };
-
-    const setEventToBtn = () => {
-        let buttons = container.getElementsByTagName("button");
-        for(let i = 0; i < buttons.length; i++){
-            buttons[i].addEventListener("click", () => {
-                alert("Hola soy " + buttons[i].getAttribute("id"));
-            });
+    },
+    {
+        title: "harry potter",
+        hints: {
+            firstHint: "It's not everyday an adventure comes along that mixes magic, action, friendship, and ... Quidditch.",
+            secondHint: "A film was made for each book in the saga with the exception of the last book",
+            thirdHint: "A film written by J. K. Rowling"
         }
-    };
-
-    return {
-        generateBtnAlphabet: generateBtnAlphabet
-    }
-}
-
-function ManagerWords() {
-
-    let wordsAndHints = {
-        movie: {
-            title: "hangover",
-            hints: {
-                firstHint: "This comedy features abundant foul language, extreme nudity and extremely offensive sexual references.",
-                secondHint: "Only to wake up and not remember what happened the night before",
-                thirdHint: "Is the story of four male friends who go to Las Vegas to celebrate Doug’s bachelor party"
-            }
-        },
-        movie: {
-            title: "harry potter",
-            hints: {
-                firstHint: "It's not everyday an adventure comes along that mixes magic, action, friendship, and ... Quidditch.",
-                secondHint: "A film was made for each book in the saga with the exception of the last book",
-                thirdHint: "A film written by J. K. Rowling"
-            }
-        },
-        movie: {
-            title: "taxi driver",
-            hints: {
-                firstHint: "Directed by Martin Scorsese and written by Paul Schrader.",
-                secondHint: "The main actor a lonely and mentally unstable ex-combatant",
-                thirdHint: "The name of main actor is Travis"
-            }
+    },
+    {
+        title: "taxi driver",
+        hints: {
+            firstHint: "Directed by Martin Scorsese and written by Paul Schrader.",
+            secondHint: "The main actor a lonely and mentally unstable ex-combatant",
+            thirdHint: "The name of main actor is Travis"
         }
     }
+];
 
-}
+let movie = moviesAndHints[Math.floor(Math.random() * 3)];
 
-let managerButtons = new ManagerButtons();
-document.addEventListener("DOMContentLoaded", managerButtons.generateBtnAlphabet);
+let container = document.getElementById("alphabet");
+let movieContainer = document.getElementById("movie-title");
+
+const generateBtnAlphabet = () => {
+    for(let i = 0; i < alphabet.length; i++){
+        let btn = document.createElement("button");
+        btn.appendChild(document.createTextNode(alphabet[i]));
+
+        let id = document.createAttribute("id");
+        id.value = alphabet[i];
+        btn.setAttributeNode(id);
+
+        container.appendChild(btn);
+    }
+    setEventToBtn();
+};
+
+const setEventToBtn = () => {
+    let buttons = container.getElementsByTagName("button");
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", () => {
+            let char = buttons[i].getAttribute("id");
+            checkMovieTitle(char);
+        });
+    }
+};
+
+const checkMovieTitle = (char) => {
+    let chars = movieContainer.getElementsByTagName("span");
+    let change = false;
+    for(let i = 0; i < chars.length; i++){
+        if(chars[i].getAttribute("name") === char){
+            chars[i].innerHTML = char;
+            change = true;
+        }
+    }
+    if(change !== true){lives--}
+};
+
+const generateWord = () => {
+    for(let i = 0; i < movie.title.length; i++){
+        let span = document.createElement("span");
+
+        let text = (movie.title[i] === " ") ?  " " : "_";
+        span.appendChild(document.createTextNode(text));
+
+        let name = document.createAttribute("name");
+        name.value = movie.title[i];
+        span.setAttributeNode(name);
+
+        movieContainer.appendChild(span);
+    }
+};
+
+document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
+document.addEventListener("DOMContentLoaded", generateWord);

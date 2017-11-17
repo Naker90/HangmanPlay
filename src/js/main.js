@@ -14,8 +14,8 @@ let moviesAndHints = [
     {
         title: "harry potter",
         hints: [
-            "It's not everyday an adventure comes along that mixes magic, action, friendship, and ... Quidditch.",
             "A film was made for each book in the saga with the exception of the last book",
+            "It's not everyday an adventure comes along that mixes magic, action, friendship, and ... Quidditch.",
             "A film written by J. K. Rowling"
         ]
     },
@@ -38,6 +38,9 @@ let chars = movieContainer.getElementsByTagName("span");
 
 let livesText = document.getElementById("lives");
 let hintBtn = document.getElementById("hint");
+let playBtn = document.getElementById("play");
+
+
 
 const generateBtnAlphabet = () => {
     for(let i = 0; i < alphabet.length; i++){
@@ -137,6 +140,11 @@ const giveHint = () => {
 
 };
 
+const resetPlay = () => {
+    location.reload();
+};
+
 document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
 document.addEventListener("DOMContentLoaded", generateWord);
 hintBtn.addEventListener("click", giveHint);
+playBtn.addEventListener("click", resetPlay);

@@ -35,6 +35,8 @@ let container = document.getElementById("alphabet");
 let movieContainer = document.getElementById("movie-title");
 let chars = movieContainer.getElementsByTagName("span");
 
+let livesText = document.getElementById("lives");
+
 const generateBtnAlphabet = () => {
     for(let i = 0; i < alphabet.length; i++){
         let btn = document.createElement("button");
@@ -74,17 +76,26 @@ const checkMovieTitle = (char) => {
             change = true;
         }
     }
-    if(change !== true){checkLives()}
+    (change) ? checkWordProgress() : checkLives();
+};
+
+const checkWordProgress = () => {
+    let count = 0;
+    for(let i = 0; i < chars.length; i++){
+        if(chars[i].innerHTML !== "_"){
+           count++
+        }
+    }
+    if(count === chars.length){livesText.innerHTML = "You Win!";}
 };
 
 const checkLives = () => {
-    let text = document.getElementById("lives");
     if(lives === 0){
-        text.innerHTML = "You have lost!";
+        livesText.innerHTML = "You have lost!";
         showWord();
     }else{
         lives--;
-        text.innerHTML = "You have "+ lives + " lives!"
+        livesText.innerHTML = "You have "+ lives + " lives!"
     }
 };
 

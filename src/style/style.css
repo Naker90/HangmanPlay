@@ -33,3 +33,8 @@ button {
 .text-to-left {
     text-align: left;
 }
+
+.disabled-button {
+    background-color: #cdcdcd;
+    color: #cdcdcd;
+}

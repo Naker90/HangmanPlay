@@ -53,8 +53,15 @@ const setEventToBtn = () => {
         buttons[i].addEventListener("click", () => {
             let char = buttons[i].getAttribute("id");
             checkMovieTitle(char);
+            setStyleDisabled(buttons[i])
         });
     }
+};
+
+const setStyleDisabled = btn => {
+    let clazz = document.createAttribute("class");
+    clazz.value="disabled-button";
+    btn.setAttributeNode(clazz);
 };
 
 const checkMovieTitle = (char) => {

@@ -130,7 +130,11 @@ const giveHint = () => {
     if(hintCounter !== movie.hints.length){
         hintText.innerHTML = hints[hintCounter];
         hintCounter++;
+        _checkLives();
+    }else{
+        hintBtn.value = "have not got more hints!";
     }
+
 };
 
 document.addEventListener("DOMContentLoaded", generateBtnAlphabet);

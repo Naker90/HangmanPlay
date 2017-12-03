@@ -27,15 +27,20 @@ function Hangman() {
         }
     ];
 
-    const getRandomWord = () => moviesAndHints[Math.floor(Math.random() * 3)];
-    const getEncodeWord = (word) => {
-        let encode = [];
-        Array.prototype.map.call(word, (char) => (char === " ") ? encode.push("-") : encode.push("_"));
-        return encode;
-    };
+    let word = "";
+    let encodeWord = [];
+
+    const generateRandomWord = () => word = moviesAndHints[Math.floor(Math.random() * 3)];
+    const generateEncodeWord = (word) => Array.prototype.map.call(word,
+        (char) => (char === " ") ? encodeWord.push("-") : encodeWord.push("_"));
+
+    const getWord = () => word;
+    const getEncodeWord = () => encodeWord;
 
     return {
-        getRandomWord: getRandomWord,
+        generateRandomWord: generateRandomWord,
+        generateEncodeWord: generateEncodeWord,
+        getWord: getWord,
         getEncodeWord: getEncodeWord
     }
 }

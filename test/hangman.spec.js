@@ -1,4 +1,5 @@
 const expect = require("chai").expect;
+const sinon = require("sinon");
 const Hangman = require("../src/js/hangman");
 
 describe("Hangman Should", () => {
@@ -64,4 +65,21 @@ describe("Hangman Should", () => {
         expect(hangman.getEncodeMovieTitle()).to.deep.equal(expected);
     });
 
+    it("return false when user ask more than hints quantity", () => {
+        let movieAndHints = {
+            title: "anyWord",
+            hints: [
+                "firstHint",
+                "secondHint",
+                "thirdHint"
+            ]
+        };
+        let hangman = createHangman(movieAndHints);
+
+        for(let i = 0; i < movieAndHints.hints.length; i++){
+            hangman.giveHint();
+        }
+
+        expect(hangman.giveHint()).to.equal(false);
+    });
 });

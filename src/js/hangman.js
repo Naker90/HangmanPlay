@@ -27,8 +27,9 @@ const moviesAndHints = [
 
 function Hangman(moviesAndHints) {
 
-    let movie = "";
+    let movie = {};
     let encodeMovieTitle = [];
+    let hintCounter = 0;
 
     const generateRandomMovieTitle = () => movie = moviesAndHints[Math.floor(Math.random() * moviesAndHints.length)];
     const generateEncodeMovieTitle = () => Array.prototype.forEach.call(movie.title,
@@ -40,7 +41,6 @@ function Hangman(moviesAndHints) {
     };
 
     const hasChar = (char) => movie.title.indexOf(char) !== -1;
-
     const replaceChar = (char) => {
       if(hasChar(char)){
           Array.prototype.forEach.call(movie.title, (movieTitleChar, index) => {
@@ -49,12 +49,22 @@ function Hangman(moviesAndHints) {
       }
     };
 
+    const giveHint = () => {
+        if(hintCounter !== movie.hints.length){
+            let hint = movie.hints[hintCounter];
+            hintCounter++;
+            return hint;
+        }
+        return false;
+    };
+
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
 
     return {
         startGame: startGame,
         replaceChar: replaceChar,
+        giveHint: giveHint,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle
     }

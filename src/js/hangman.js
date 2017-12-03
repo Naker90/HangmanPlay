@@ -37,13 +37,21 @@ function Hangman() {
 
     const hasChar = (word, character) => word.indexOf(character) !== -1;
 
+    const replaceChar = (word, char) => {
+      if(hasChar(word, char)){
+          for(let i = 0; i < word.length; i++){
+              if(char === word[i]){encodeWord[i] = char}
+          }
+      }
+    };
+
     const getWord = () => word;
     const getEncodeWord = () => encodeWord;
 
     return {
         generateRandomWord: generateRandomWord,
         generateEncodeWord: generateEncodeWord,
-        hasChar: hasChar,
+        replaceChar: replaceChar,
         getWord: getWord,
         getEncodeWord: getEncodeWord
     }

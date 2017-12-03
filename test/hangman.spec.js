@@ -20,8 +20,8 @@ describe("Hangman Should", () => {
     });
 
     it("return hide word for show it in the game without space", () => {
-        let word = "anyMovie";
-        let expectEncodeWord = ["_", "_", "_", "_", "_", "_", "_", "_"];
+        let word = "anyWord";
+        let expectEncodeWord = ["_", "_", "_", "_", "_", "_", "_"];
 
         hangman.generateEncodeWord(word);
 
@@ -29,21 +29,23 @@ describe("Hangman Should", () => {
     });
 
     it("return hide word for show it in the game with space", () => {
-        let word = "any Movie";
-        let expectEncodeWord = ["_", "_", "_", "-", "_", "_", "_", "_", "_"];
+        let word = "any Word";
+        let expectEncodeWord = ["_", "_", "_", "-", "_", "_", "_", "_"];
 
         hangman.generateEncodeWord(word);
 
         expect(hangman.getEncodeWord()).to.deep.equal(expectEncodeWord);
+
     });
 
-    it("return true if word contains the selected character", () => {
-        expect(hangman.hasChar("anyWord", "a")).to.equal(true);
-    });
+    it("replace char into encode word array if contain it", () => {
+        let word = "anyWord";
+        let expected = ["a", "_", "_", "_", "_", "_", "_"];
 
+        hangman.generateEncodeWord(word);
+        hangman.replaceChar(word, "a");
 
-    it("return false if word does not contains the selected character", () => {
-        expect(hangman.hasChar("anyWord", "x")).to.equal(false);
+        expect(hangman.getEncodeWord()).to.deep.equal(expected);
     });
 
 });

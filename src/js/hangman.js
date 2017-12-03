@@ -25,39 +25,38 @@ const moviesAndHints = [
     }
 ];
 
-
 function Hangman(moviesAndHints) {
 
-    let word = "";
-    let encodeWord = [];
+    let movieTitle = "";
+    let encodeMovieTitle = [];
 
-    const generateRandomWord = () => word = moviesAndHints[Math.floor(Math.random() * moviesAndHints.length)];
-    const generateEncodeWord = () => Array.prototype.map.call(word.title,
-        (char) => (char === " ") ? encodeWord.push("-") : encodeWord.push("_"));
+    const generateRandomMovieTitle = () => movieTitle = moviesAndHints[Math.floor(Math.random() * moviesAndHints.length)].title;
+    const generateEncodeMovieTitle = () => Array.prototype.map.call(movieTitle,
+        (char) => (char === " ") ? encodeMovieTitle.push("-") : encodeMovieTitle.push("_"));
 
     const startGame = () => {
-        generateRandomWord();
-        generateEncodeWord();
+        generateRandomMovieTitle();
+        generateEncodeMovieTitle();
     };
 
-    const hasChar = (character) => word.title.indexOf(character) !== -1;
+    const hasChar = (character) => movieTitle.indexOf(character) !== -1;
 
     const replaceChar = (char) => {
       if(hasChar(char)){
-          for(let i = 0; i < word.title.length; i++){
-              if(char === word.title[i]){encodeWord[i] = char}
+          for(let i = 0; i < movieTitle.length; i++){
+              if(char === movieTitle[i]){encodeMovieTitle[i] = char}
           }
       }
     };
 
-    const getWord = () => word;
-    const getEncodeWord = () => encodeWord;
+    const getMovieTitle = () => movieTitle;
+    const getEncodeMovieTitle = () => encodeMovieTitle;
 
     return {
         startGame: startGame,
         replaceChar: replaceChar,
-        getWord: getWord,
-        getEncodeWord: getEncodeWord
+        getMovieTitle: getMovieTitle,
+        getEncodeMovieTitle: getEncodeMovieTitle
     }
 }
 

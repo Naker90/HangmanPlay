@@ -18,9 +18,9 @@ describe("Hangman Should", () => {
         };
 
         let hangman = createHangman(moviesAndHints);
-        let word = hangman.getWord();
+        let movieTitle = hangman.getMovieTitle();
 
-        expect(word.title !== undefined).to.equal(true);
+        expect(movieTitle !== undefined).to.equal(true);
     });
 
     it("return hide word for show it in the game without space", () => {
@@ -31,9 +31,9 @@ describe("Hangman Should", () => {
             ]
         };
         let hangman = createHangman(movieAndHints);
-        let expectEncodeWord = ["_", "_", "_", "_", "_", "_", "_"];
+        let expected = ["_", "_", "_", "_", "_", "_", "_"];
 
-        expect(hangman.getEncodeWord()).to.deep.equal(expectEncodeWord);
+        expect(hangman.getEncodeMovieTitle()).to.deep.equal(expected);
     });
 
     it("return hide word for show it in the game with space", () => {
@@ -44,10 +44,9 @@ describe("Hangman Should", () => {
             ]
         };
         let hangman = createHangman(movieAndHints);
-        let expectEncodeWord = ["_", "_", "_", "-", "_", "_", "_", "_"];
+        let expected = ["_", "_", "_", "-", "_", "_", "_", "_"];
 
-        expect(hangman.getEncodeWord()).to.deep.equal(expectEncodeWord);
-
+        expect(hangman.getEncodeMovieTitle()).to.deep.equal(expected);
     });
 
     it("replace char into encode word array if contain it", () => {
@@ -62,7 +61,7 @@ describe("Hangman Should", () => {
 
         hangman.replaceChar("a");
 
-        expect(hangman.getEncodeWord()).to.deep.equal(expected);
+        expect(hangman.getEncodeMovieTitle()).to.deep.equal(expected);
     });
 
 });

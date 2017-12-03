@@ -35,5 +35,4 @@ describe("Hangman Should", () => {
 
         expect(hangman.getEncodeWord()).to.deep.equal(expectEncodeWord);
     });
-
 });

@@ -41,4 +41,9 @@ describe("Hangman Should", () => {
         expect(hangman.hasChar("anyWord", "a")).to.equal(true);
     });
 
+
+    it("return false if word does not contains the selected character", () => {
+        expect(hangman.hasChar("anyWord", "x")).to.equal(false);
+    });
+
 });

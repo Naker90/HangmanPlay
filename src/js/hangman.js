@@ -27,9 +27,12 @@ const moviesAndHints = [
 
 function Hangman(moviesAndHints) {
 
+    const MAX_LIVES = 10;
+
     let movie = {};
     let encodeMovieTitle = [];
     let hintCounter = 0;
+    let lives = MAX_LIVES;
 
     const generateRandomMovieTitle = () => movie = moviesAndHints[Math.floor(Math.random() * moviesAndHints.length)];
     const generateEncodeMovieTitle = () => Array.prototype.forEach.call(movie.title,
@@ -58,15 +61,20 @@ function Hangman(moviesAndHints) {
         return false;
     };
 
+    const checkLives = () => (lives !== 0) ? lives-- : false;
+
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
+    const getMaxLives = () => MAX_LIVES;
 
     return {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
+        checkLives: checkLives,
         getMovieTitle: getMovieTitle,
-        getEncodeMovieTitle: getEncodeMovieTitle
+        getEncodeMovieTitle: getEncodeMovieTitle,
+        getMaxLives: getMaxLives
     }
 }
 

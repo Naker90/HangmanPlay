@@ -1,5 +1,4 @@
 const expect = require("chai").expect;
-const sinon = require("sinon");
 const Hangman = require("../src/js/hangman");
 
 describe("Hangman Should", () => {
@@ -81,5 +80,21 @@ describe("Hangman Should", () => {
         }
 
         expect(hangman.giveHint()).to.equal(false);
+    });
+
+    it("return false when user finished all lives", () => {
+        let movieAndHints = {
+            title: "anyWord",
+            hints: [
+                "anyHint"
+            ]
+        };
+        let hangman = createHangman(movieAndHints);
+
+        for(let i = hangman.getMaxLives(); i > 0; i--){
+            hangman.checkLives();
+        }
+
+        expect(hangman.checkLives()).to.equal(false);
     });
 });

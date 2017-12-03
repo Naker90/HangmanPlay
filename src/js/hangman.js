@@ -31,8 +31,11 @@ function Hangman() {
     let encodeWord = [];
 
     const generateRandomWord = () => word = moviesAndHints[Math.floor(Math.random() * 3)];
+
     const generateEncodeWord = (word) => Array.prototype.map.call(word,
         (char) => (char === " ") ? encodeWord.push("-") : encodeWord.push("_"));
+
+    const hasChar = (word, character) => word.indexOf(character) !== -1;
 
     const getWord = () => word;
     const getEncodeWord = () => encodeWord;
@@ -40,6 +43,7 @@ function Hangman() {
     return {
         generateRandomWord: generateRandomWord,
         generateEncodeWord: generateEncodeWord,
+        hasChar: hasChar,
         getWord: getWord,
         getEncodeWord: getEncodeWord
     }

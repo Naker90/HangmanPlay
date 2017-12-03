@@ -1,5 +1,6 @@
 const beforeEach = require("mocha").beforeEach;
 const expect = require("chai").expect;
+let sinon = require("sinon");
 const Hangman = require("../src/js/hangman");
 
 describe("Hangman Should", () => {
@@ -35,4 +36,9 @@ describe("Hangman Should", () => {
 
         expect(hangman.getEncodeWord()).to.deep.equal(expectEncodeWord);
     });
+
+    it("return true if word contains the selected character", () => {
+        expect(hangman.hasChar("anyWord", "a")).to.equal(true);
+    });
+
 });

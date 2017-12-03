@@ -1,4 +1,5 @@
 const before = require("mocha").before;
+const expect = require("chai").expect;
 const assert = require("chai").assert;
 const Hangman = require("../src/js/hangman");
 
@@ -12,7 +13,13 @@ describe("Hangman Should", () => {
 
     it("return random word", () => {
         let word = hangman.getRandomWord();
-        assert.equal(word.title !== undefined, true);
+        expect(word.title !== undefined).to.equal(true);
     });
-    
+
+    it("return hide word for show it in the game without space", () => {
+        let word = "anyMovie";
+        let expectEncodeWord = ["_", "_", "_", "_", "_", "_", "_", "_"];
+        expect(hangman.getEncodeWord(word)).to.deep.equal(expectEncodeWord);
+    });
+
 });

@@ -28,9 +28,15 @@ function Hangman() {
     ];
 
     const getRandomWord = () => moviesAndHints[Math.floor(Math.random() * 3)];
+    const getEncodeWord = (word) => {
+        let encode = [];
+        Array.prototype.map.call(word, (char) => encode.push("_"));
+        return encode;
+    };
 
     return {
-        getRandomWord: getRandomWord
+        getRandomWord: getRandomWord,
+        getEncodeWord: getEncodeWord
     }
 }
 

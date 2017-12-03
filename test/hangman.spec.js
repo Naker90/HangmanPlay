@@ -22,4 +22,10 @@ describe("Hangman Should", () => {
         expect(hangman.getEncodeWord(word)).to.deep.equal(expectEncodeWord);
     });
 
+    it("return hide word for show it in the game with space", () => {
+        let word = "any Movie";
+        let expectEncodeWord = ["_", "_", "_", "-", "_", "_", "_", "_", "_"];
+        expect(hangman.getEncodeWord(word)).to.deep.equal(expectEncodeWord);
+    });
+
 });

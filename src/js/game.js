@@ -56,9 +56,9 @@ function Vista() {
     const setEventToBtn = () => {
         let buttons = container.getElementsByTagName("button");
         Array.prototype.map.call(buttons, (button) => {
+            let buttonId = button.getAttribute("id");
             button.addEventListener("click", () => {
-                let char = button.getAttribute("id");
-                hangman.replaceChar(char);
+                hangman.replaceChar(buttonId);
                 setStyleDisabled(button);
             });
         });

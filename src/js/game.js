@@ -69,7 +69,7 @@ function Vista() {
 
     const buttonAction = function (char, button) {
         hangman.replaceChar(char);
-        generateWord();
+        updateWord();
         setStyleDisabled(button);
     };
 
@@ -79,8 +79,13 @@ function Vista() {
         btn.setAttributeNode(style);
     };
 
-    const generateWord = () => {
+    const updateWord = () => {
         movieContainer.innerHTML = "";
+        generateWord();
+        checkWordProgress();
+    };
+
+    const generateWord = function () {
         encodeMovieTitle = hangman.getEncodeMovieTitle();
         encodeMovieTitle.map((letter) => {
             let span = document.createElement("span");
@@ -89,7 +94,6 @@ function Vista() {
 
             movieContainer.appendChild(span);
         });
-        checkWordProgress();
     };
 
     const checkWordProgress = () => {
@@ -101,7 +105,7 @@ function Vista() {
 
     return {
         generateBtnAlphabet: generateBtnAlphabet,
-        generateWord: generateWord
+        generateWord: updateWord
     }
 }
 

@@ -7,7 +7,7 @@
     "compile": "{src,js}/*.js"
   },
   "scripts": {
-    "test": "mocha \"./{,!(node_modules)/**/}*.spec.js\" --recursive",
+    "test": "mocha \"./{,!(node_modules)/**/}*.js\" --recursive",
     "compile": "babel -d src/dist/ src/js/",
     "watch": "npm-watch"
   },

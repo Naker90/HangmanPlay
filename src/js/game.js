@@ -31,6 +31,9 @@ const MoviesAndHints = [
 
 function Vista() {
 
+    const hangman = new Hangman(MoviesAndHints);
+    hangman.start();
+
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
     let container = document.getElementById("alphabet");
@@ -65,6 +68,23 @@ function Vista() {
         style.value="disabled-button";
         btn.setAttributeNode(style);
     };
+
+    const generateWord = () => {
+        let encodeMovieTitle =
+        for(let i = 0; i < movie.title.length; i++){
+            let span = document.createElement("span");
+
+            let text = (movie.title[i] === " ") ?  " " : "_";
+            span.appendChild(document.createTextNode(text));
+
+            let name = document.createAttribute("name");
+            name.value = movie.title[i];
+            span.setAttributeNode(name);
+
+            movieContainer.appendChild(span);
+        }
+    };
+
 
     return {
         generateBtnAlphabet: generateBtnAlphabet
@@ -130,11 +150,9 @@ function Hangman(moviesAndHints) {
 
 function Game() {
 
-    const hangman = new Hangman(MoviesAndHints);
     const vista = Vista();
 
     const start = () => {
-        hangman.startGame();
         document.addEventListener("DOMContentLoaded", vista.generateBtnAlphabet);
     };
 

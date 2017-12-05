@@ -35,9 +35,13 @@ function Vista() {
     hangman.startGame();
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let encodeMovieTitle = "";
 
     let container = document.getElementById("alphabet");
     let movieContainer = document.getElementById("movie-title");
+    let livesText = document.getElementById("lives");
+    let hintBtn = document.getElementById("hint");
+    let playBtn = document.getElementById("play");
 
     const generateBtnAlphabet = () => {
         Array.prototype.forEach.call(alphabet, (letter) => {
@@ -56,12 +60,17 @@ function Vista() {
     const setEventToBtn = () => {
         let buttons = container.getElementsByTagName("button");
         Array.prototype.map.call(buttons, (button) => {
-            let buttonId = button.getAttribute("id");
+            let char = button.getAttribute("id");
             button.addEventListener("click", () => {
-                hangman.replaceChar(buttonId);
-                setStyleDisabled(button);
+                buttonAction(char, button);
             });
         });
+    };
+
+    const buttonAction = function (char, button) {
+        hangman.replaceChar(char);
+        generateWord();
+        setStyleDisabled(button);
     };
 
     const setStyleDisabled = btn => {
@@ -71,14 +80,23 @@ function Vista() {
     };
 
     const generateWord = () => {
-        let encodeMovieTitle = hangman.getEncodeMovieTitle();
+        movieContainer.innerHTML = "";
+        encodeMovieTitle = hangman.getEncodeMovieTitle();
         encodeMovieTitle.map((letter) => {
             let span = document.createElement("span");
-            let text = letter !== "-" ? "_" : " ";
+            let text = letter === "-" ? " " : letter;
             span.appendChild(document.createTextNode(text));
 
             movieContainer.appendChild(span);
         });
+        checkWordProgress();
+    };
+
+    const checkWordProgress = () => {
+        let lessOverLetters = encodeMovieTitle.filter((letter) => {
+            if(letter === "_"){return letter}
+        });
+        if(lessOverLetters.length === 0){livesText.innerHTML = "You Win!";}
     };
 
     return {

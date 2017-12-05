@@ -40,8 +40,6 @@ let livesText = document.getElementById("lives");
 let hintBtn = document.getElementById("hint");
 let playBtn = document.getElementById("play");
 
-
-
 const generateBtnAlphabet = () => {
     for(let i = 0; i < alphabet.length; i++){
         let btn = document.createElement("button");

@@ -100,7 +100,13 @@ function Vista() {
         let lessOverLetters = encodeMovieTitle.filter((letter) => {
             if(letter === "_"){return letter}
         });
-        if(lessOverLetters.length === 0){livesText.innerHTML = "You Win!";}
+        (lessOverLetters.length === 0) ? livesText.innerHTML = "You Win!" : updateLiveState();
+    };
+
+    const updateLiveState = function () {
+        (hangman.hasLives())
+            ? livesText.innerHTML = "You have "+ hangman.getLives() + " lives!"
+            : livesText.innerHTML = "You have lost!";
     };
 
     return {
@@ -150,10 +156,11 @@ function Hangman(moviesAndHints) {
     };
 
     const checkLives = () => (lives !== 0) ? lives-- : false;
+    const hasLives = () => lives > 0;
 
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
-    const getMaxLives = () => MAX_LIVES;
+    const getLives = () => lives;
 
     return {
         startGame: startGame,
@@ -161,7 +168,8 @@ function Hangman(moviesAndHints) {
         giveHint: giveHint,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
-        getMaxLives: getMaxLives
+        getLives: getLives,
+        hasLives: hasLives
     }
 }
 

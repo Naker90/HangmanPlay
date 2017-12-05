@@ -125,6 +125,25 @@ function Hangman(moviesAndHints) {
     }
 }
 
+/*GAME CLASS*/
+
+function Game() {
+
+    let vista = Vista();
+
+    const start = () => {
+        document.addEventListener("DOMContentLoaded", vista.generateBtnAlphabet);
+    };
+
+    return {
+        start: start
+    }
+}
+
+/*EXEC*/
+
+Game().start();
+
 /*TEST CLASS*/
 
 describe("Hangman Should", () => {

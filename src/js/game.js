@@ -31,12 +31,13 @@ const MoviesAndHints = [
 
 function Vista() {
 
-    const hangman = new Hangman(MoviesAndHints);
-    hangman.start();
+    const hangman = Hangman(MoviesAndHints);
+    hangman.startGame();
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
     let container = document.getElementById("alphabet");
+    let movieContainer = document.getElementById("movie-title");
 
     const generateBtnAlphabet = () => {
         Array.prototype.forEach.call(alphabet, (letter) => {
@@ -70,24 +71,19 @@ function Vista() {
     };
 
     const generateWord = () => {
-        let encodeMovieTitle =
-        for(let i = 0; i < movie.title.length; i++){
+        let encodeMovieTitle = hangman.getEncodeMovieTitle();
+        encodeMovieTitle.map((letter) => {
             let span = document.createElement("span");
-
-            let text = (movie.title[i] === " ") ?  " " : "_";
+            let text = letter !== "-" ? "_" : " ";
             span.appendChild(document.createTextNode(text));
 
-            let name = document.createAttribute("name");
-            name.value = movie.title[i];
-            span.setAttributeNode(name);
-
             movieContainer.appendChild(span);
-        }
+        });
     };
 
-
     return {
-        generateBtnAlphabet: generateBtnAlphabet
+        generateBtnAlphabet: generateBtnAlphabet,
+        generateWord: generateWord
     }
 }
 
@@ -154,6 +150,7 @@ function Game() {
 
     const start = () => {
         document.addEventListener("DOMContentLoaded", vista.generateBtnAlphabet);
+        document.addEventListener("DOMContentLoaded", vista.generateWord);
     };
 
     return {

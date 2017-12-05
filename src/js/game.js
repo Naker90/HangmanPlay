@@ -33,9 +33,6 @@ function Vista() {
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-    const hangman = new Hangman(MoviesAndHints);
-    hangman.startGame();
-
     let container = document.getElementById("alphabet");
 
     const generateBtnAlphabet = () => {
@@ -58,9 +55,15 @@ function Vista() {
             button.addEventListener("click", () => {
                 let char = button.getAttribute("id");
                 hangman.replaceChar(char);
-                //_setStyleDisabled(button);
+                setStyleDisabled(button);
             });
         });
+    };
+
+    const setStyleDisabled = btn => {
+        let style = document.createAttribute("class");
+        style.value="disabled-button";
+        btn.setAttributeNode(style);
     };
 
     return {
@@ -127,9 +130,11 @@ function Hangman(moviesAndHints) {
 
 function Game() {
 
-    let vista = Vista();
+    const hangman = new Hangman(MoviesAndHints);
+    const vista = Vista();
 
     const start = () => {
+        hangman.startGame();
         document.addEventListener("DOMContentLoaded", vista.generateBtnAlphabet);
     };
 

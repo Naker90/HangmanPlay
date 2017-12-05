@@ -129,9 +129,11 @@ function Hangman(moviesAndHints) {
         generateEncodeMovieTitle();
     };
 
-    const hasChar = (char) => movie.title.indexOf(char) !== -1;
+    const movieTitleContain = (char) => movie.title.indexOf(char) !== -1;
     const replaceChar = (char) => {
-        if(hasChar(char)){
+        if(!movieTitleContain(char)){
+            checkLives();
+        }else{
             Array.prototype.forEach.call(movie.title, (movieTitleChar, index) => {
                 if(char === movieTitleChar){encodeMovieTitle[index] = char}
             });
@@ -157,7 +159,6 @@ function Hangman(moviesAndHints) {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
-        checkLives: checkLives,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
         getMaxLives: getMaxLives

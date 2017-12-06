@@ -1,17 +1,16 @@
 function Stickman() {
 
+    let stickmanCounter = 0;
     let canvas = document.getElementById("canvas");
     let context = canvas.getContext('2d');
     context.beginPath();
     context.strokeStyle = '#ffffff';
 
-    let drawFunctions = [part1, part2, part3, part4, part5, head, part6, part7, part8, part9];
-
     const head = () => {
         canvas = document.getElementById("canvas");
         context = canvas.getContext('2d');
         context.beginPath();
-        context.arc(60, 25, 10, 0, Math.PI*2, true);
+        context.arc(300, 80, 20, 0, Math.PI*2, true);
         context.stroke();
     };
 
@@ -21,16 +20,27 @@ function Stickman() {
         context.stroke();
     };
 
-    const part1 = () => draw (50, 200, 450, 200);
-    const part2 = () => draw (10, 0, 10, 600);
-    const part3 = () => draw (0, 5, 70, 5);
-    const part4 = () => draw (60, 5, 60, 15);
-    const part5 = () => draw (60, 36, 60, 70);
-    const part6 = () => draw (60, 46, 100, 50);
-    const part7 = () => draw (60, 46, 20, 50);
-    const part8 = () => draw (60, 70, 100, 100);
-    const part9 = () => draw (60, 70, 20, 100);
+    const empty = () => {};
+    const part1 = () => draw (0, 230, 500, 230);
+    const part2 = () => draw (150, 230, 150, 20);
+    const part3 = () => draw (150, 20, 300, 20);
+    const part4 = () => draw (300, 20, 300, 60);
+    const part5 = () => draw (300, 100, 300, 160);
+    const part6 = () => draw (300, 120, 260, 140);
+    const part7 = () => draw (300, 120, 330, 140);
+    const part8 = () => draw (300, 160, 280, 220);
+    const part9 = () => draw (300, 160, 320, 220);
 
+    let drawFunctions = [empty, part1, part2, part3, part4, head, part5, part6, part7, part8, part9];
+
+    const next = () => {
+        drawFunctions[stickmanCounter]();
+        stickmanCounter++;
+    };
+
+    return {
+        next: next
+    }
 }
 
 module.exports = Stickman;

@@ -1,14 +1,15 @@
 const Hangman = require("./Hangman");
+const Stickman = require("./Stickman");
 const MoviesAndHints = require("./MoviesAndHints");
 
 function View() {
 
+    const stickman = Stickman();
     const hangman = Hangman(MoviesAndHints);
     hangman.startGame();
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     let encodeMovieTitle = "";
-    let stickmanCounter = 9;
 
     let container = document.getElementById("alphabet");
     let movieContainer = document.getElementById("movie-title");
@@ -90,8 +91,7 @@ function View() {
     const updateLiveState = () => {
         if(hangman.hasLives()){
             livesText.innerHTML = "You have "+ hangman.getLives() + " lives!";
-            drawArray[stickmanCounter]();
-            stickmanCounter--;
+            stickman.next();
         }else{
             livesText.innerHTML = "You lost!";
             movieContainer.innerHTML = "";

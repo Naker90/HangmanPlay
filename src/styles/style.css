@@ -1,3 +1,7 @@
+html {
+    margin-bottom: 0;
+}
+
 body {
     font-family: 'Indie Flower', arial, "Times New Roman";
     background-color: #464D5B;
@@ -51,6 +55,18 @@ canvas {
     margin-top: 10px;
     border: 1px dotted #ffffff;
 }
+
+footer {
+    width: 100%;
+    font-size: 18px;
+    margin-top: 30px;
+    padding-top: 20px;
+    position: absolute;
+    background-color: #ffffff;
+    color: #464D5B;
+    font-weight: bold;
+}
+
 
 .text-to-left {
     text-align: left;

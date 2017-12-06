@@ -46,6 +46,11 @@ function View() {
     const startView = () => {
         document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
         document.addEventListener("DOMContentLoaded", updateWord);
+        playBtn.addEventListener("click", reloadPage);
+    };
+
+    const reloadPage = () => {
+        location.reload()
     };
 
     const generateBtnAlphabet = () => {

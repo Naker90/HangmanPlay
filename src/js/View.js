@@ -8,6 +8,7 @@ function View() {
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     let encodeMovieTitle = "";
+    let stickmanCounter = 9;
 
     let container = document.getElementById("alphabet");
     let movieContainer = document.getElementById("movie-title");
@@ -88,7 +89,9 @@ function View() {
 
     const updateLiveState = () => {
         if(hangman.hasLives()){
-            livesText.innerHTML = "You have "+ hangman.getLives() + " lives!"
+            livesText.innerHTML = "You have "+ hangman.getLives() + " lives!";
+            drawArray[stickmanCounter]();
+            stickmanCounter--;
         }else{
             livesText.innerHTML = "You lost!";
             movieContainer.innerHTML = "";

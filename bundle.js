@@ -74,19 +74,87 @@
     /******/__webpack_require__.p = "";
     /******/
     /******/ // Load entry module and return exports
-    /******/return __webpack_require__(__webpack_require__.s = 3);
+    /******/return __webpack_require__(__webpack_require__.s = 4);
     /******/
 })(
 /************************************************************************/
 /******/[
 /* 0 */
+/***/function (module, exports) {
+
+    function Stickman() {
+
+        var stickmanCounter = 0;
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = '#ffffff';
+
+        var draw = function draw(pathFromX, pathFromY, pathToX, pathToY) {
+            context.moveTo(pathFromX, pathFromY);
+            context.lineTo(pathToX, pathToY);
+            context.stroke();
+        };
+
+        var part1 = function part1() {
+            return draw(0, 230, 500, 230);
+        };
+        var part2 = function part2() {
+            return draw(150, 230, 150, 20);
+        };
+        var part3 = function part3() {
+            return draw(150, 20, 300, 20);
+        };
+        var part4 = function part4() {
+            return draw(300, 20, 300, 60);
+        };
+        var head = function head() {
+            context.beginPath();
+            context.arc(300, 80, 20, 0, Math.PI * 2, true);
+            context.stroke();
+        };
+        var part5 = function part5() {
+            return draw(300, 100, 300, 160);
+        };
+        var part6 = function part6() {
+            return draw(300, 120, 260, 140);
+        };
+        var part7 = function part7() {
+            return draw(300, 120, 330, 140);
+        };
+        var part8 = function part8() {
+            return draw(300, 160, 280, 220);
+        };
+        var part9 = function part9() {
+            return draw(300, 160, 320, 220);
+        };
+
+        var drawFunctions = [part1, part2, part3, part4, head, part5, part6, part7, part8, part9];
+
+        var drawNext = function drawNext() {
+            drawFunctions[stickmanCounter]();
+            stickmanCounter++;
+        };
+
+        return {
+            drawNext: drawNext
+        };
+    }
+
+    module.exports = Stickman;
+
+    /***/
+},
+/* 1 */
 /***/function (module, exports, __webpack_require__) {
 
-    var Hangman = __webpack_require__(1);
-    var MoviesAndHints = __webpack_require__(2);
+    var Hangman = __webpack_require__(2);
+    var Stickman = __webpack_require__(0);
+    var MoviesAndHints = __webpack_require__(3);
 
     function View() {
 
+        var stickman = Stickman();
         var hangman = Hangman(MoviesAndHints);
         hangman.startGame();
 
@@ -213,7 +281,7 @@
         };
 
         return {
-            startView: configureView
+            configureView: configureView
         };
     }
 
@@ -221,11 +289,14 @@
 
     /***/
 },
-/* 1 */
-/***/function (module, exports) {
+/* 2 */
+/***/function (module, exports, __webpack_require__) {
+
+    var Stickman = __webpack_require__(0);
 
     function Hangman(moviesAndHints) {
 
+        var stickman = Stickman();
         var MAX_LIVES = 10;
 
         var movie = {};
@@ -272,7 +343,12 @@
         };
 
         var checkLives = function checkLives() {
-            return lives !== 0 ? lives-- : false;
+            if (lives !== 0) {
+                lives--;
+                stickman.drawNext();
+            } else {
+                return false;
+            }
         };
         var hasLives = function hasLives() {
             return lives > 0;
@@ -317,7 +393,7 @@
 
     /***/
 },
-/* 2 */
+/* 3 */
 /***/function (module, exports) {
 
     module.exports = [{
@@ -333,22 +409,23 @@
 
     /***/
 },
-/* 3 */
-/***/function (module, exports, __webpack_require__) {
-
-    __webpack_require__(4);
-    __webpack_require__(1);
-    __webpack_require__(2);
-    module.exports = __webpack_require__(0);
-
-    /***/
-},
 /* 4 */
 /***/function (module, exports, __webpack_require__) {
 
-    var View = __webpack_require__(0);
+    __webpack_require__(5);
+    __webpack_require__(2);
+    __webpack_require__(3);
+    __webpack_require__(0);
+    module.exports = __webpack_require__(1);
 
-    View().startView();
+    /***/
+},
+/* 5 */
+/***/function (module, exports, __webpack_require__) {
+
+    var View = __webpack_require__(1);
+
+    View().configureView();
 
     /***/
 }]

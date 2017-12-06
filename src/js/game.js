@@ -76,6 +76,7 @@ function View() {
         hangman.replaceChar(char);
         updateWord();
         setStyleDisabled(button);
+        deleteEventListenerTo(button);
     };
 
     const setStyleDisabled = btn => {
@@ -118,6 +119,11 @@ function View() {
         let span = document.createElement("span");
         span.appendChild(document.createTextNode(text));
         movieContainer.appendChild(span);
+    };
+
+    const deleteEventListenerTo = (element) => {
+        let newElementWithoutEvent = element.cloneNode(true);
+        element.parentNode.replaceChild(newElementWithoutEvent, element);
     };
 
     return {

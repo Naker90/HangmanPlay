@@ -47,6 +47,7 @@ function View() {
         document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
         document.addEventListener("DOMContentLoaded", updateWord);
         playBtn.addEventListener("click", reloadPage);
+        hintBtn.addEventListener("click", updateHint);
     };
 
     const reloadPage = () => {
@@ -137,6 +138,17 @@ function View() {
     const deleteEventListenerTo = (element) => {
         let newElementWithoutEvent = element.cloneNode(true);
         element.parentNode.replaceChild(newElementWithoutEvent, element);
+    };
+
+    const updateHint = () => {
+        let hintText = document.getElementById("hint-text");
+        let hint = hangman.giveHint();
+        if(hint){
+            hintText.innerHTML = hint;
+            updateLiveState();
+        }else{
+            hintBtn.value = "have not got more hints!";
+        }
     };
 
     return {

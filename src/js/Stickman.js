@@ -6,14 +6,6 @@ function Stickman() {
     context.beginPath();
     context.strokeStyle = '#ffffff';
 
-    const head = () => {
-        canvas = document.getElementById("canvas");
-        context = canvas.getContext('2d');
-        context.beginPath();
-        context.arc(300, 80, 20, 0, Math.PI*2, true);
-        context.stroke();
-    };
-
     const draw = (pathFromX, pathFromY, pathToX, pathToY) => {
         context.moveTo(pathFromX, pathFromY);
         context.lineTo(pathToX, pathToY);
@@ -25,6 +17,10 @@ function Stickman() {
     const part2 = () => draw (150, 230, 150, 20);
     const part3 = () => draw (150, 20, 300, 20);
     const part4 = () => draw (300, 20, 300, 60);
+    const head = () => {
+        context.arc(300, 80, 20, 0, Math.PI*2, true);
+        context.stroke();
+    };
     const part5 = () => draw (300, 100, 300, 160);
     const part6 = () => draw (300, 120, 260, 140);
     const part7 = () => draw (300, 120, 330, 140);

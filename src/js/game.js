@@ -94,10 +94,9 @@ function Vista() {
     };
 
     const checkWordProgress = () => {
-        let lessOverLetters = encodeMovieTitle.filter((letter) => {
-            if(letter === "_"){return letter}
-        });
-        (lessOverLetters.length === 0) ? livesText.innerHTML = "You Win!" : updateLiveState();
+        hangman.checkWordProgress(encodeMovieTitle)
+            ? livesText.innerHTML = "You Win!"
+            : updateLiveState();
     };
 
     const updateLiveState = function () {
@@ -165,6 +164,13 @@ function Hangman(moviesAndHints) {
     const checkLives = () => (lives !== 0) ? lives-- : false;
     const hasLives = () => lives > 0;
 
+    const checkWordProgress = (encodeMovieTitle) => {
+        let lessOverLetters = encodeMovieTitle.filter((letter) => {
+            if(letter === "_"){return letter}
+        });
+        return lessOverLetters.length === 0;
+    };
+
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
     const getLives = () => lives;
@@ -173,6 +179,7 @@ function Hangman(moviesAndHints) {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
+        checkWordProgress, checkWordProgress,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
         getLives: getLives,

@@ -88,11 +88,8 @@ function Vista() {
     const generateWord = function () {
         encodeMovieTitle = hangman.getEncodeMovieTitle();
         encodeMovieTitle.map((letter) => {
-            let span = document.createElement("span");
             let text = letter === "-" ? " " : letter;
-            span.appendChild(document.createTextNode(text));
-
-            movieContainer.appendChild(span);
+            createSpanWith(text);
         });
     };
 
@@ -104,9 +101,19 @@ function Vista() {
     };
 
     const updateLiveState = function () {
-        (hangman.hasLives())
-            ? livesText.innerHTML = "You have "+ hangman.getLives() + " lives!"
-            : livesText.innerHTML = "You lost!";
+        if(hangman.hasLives()){
+            livesText.innerHTML = "You have "+ hangman.getLives() + " lives!"
+        }else{
+            livesText.innerHTML = "You lost!";
+            movieContainer.innerHTML = "";
+            createSpanWith(hangman.getMovieTitle());
+        }
+    };
+
+    const createSpanWith = (text) => {
+        let span = document.createElement("span");
+        span.appendChild(document.createTextNode(text));
+        movieContainer.appendChild(span);
     };
 
     return {

@@ -106,7 +106,7 @@ function View() {
     };
 
     const checkWordProgress = () => {
-        if(hangman.checkWordProgress(encodeMovieTitle)){
+        if(hangman.isWinner()){
             livesText.innerHTML = "You Win!";
             deleteAllButtonEventLister();
         }else{
@@ -204,12 +204,13 @@ function Hangman(moviesAndHints) {
     const checkLives = () => (lives !== 0) ? lives-- : false;
     const hasLives = () => lives > 0;
 
-    const checkWordProgress = (encodeMovieTitle) => {
+    const checkWordProgress = () => {
         let lessOverLetters = encodeMovieTitle.filter((letter) => {
             if(letter === "_"){return letter}
         });
-        return lessOverLetters.length === 0;
+        return lessOverLetters.length;
     };
+    const isWinner = () => checkWordProgress() === 0;
 
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
@@ -220,7 +221,7 @@ function Hangman(moviesAndHints) {
         replaceChar: replaceChar,
         giveHint: giveHint,
         checkLives: checkLives,
-        checkWordProgress: checkWordProgress,
+        isWinner: isWinner,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
         getLives: getLives,

@@ -29,13 +29,13 @@ function Stickman() {
 
     let drawFunctions = [empty, part1, part2, part3, part4, head, part5, part6, part7, part8, part9];
 
-    const next = () => {
+    const drawNext = () => {
         drawFunctions[stickmanCounter]();
         stickmanCounter++;
     };
 
     return {
-        next: next
+        drawNext: drawNext
     }
 }
 

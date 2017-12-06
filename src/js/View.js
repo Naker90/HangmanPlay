@@ -91,7 +91,6 @@ function View() {
     const updateLiveState = () => {
         if(hangman.hasLives()){
             livesText.innerHTML = "You have "+ hangman.getLives() + " lives!";
-            stickman.next();
         }else{
             livesText.innerHTML = "You lost!";
             movieContainer.innerHTML = "";
@@ -132,7 +131,7 @@ function View() {
     };
 
     return {
-        startView: configureView
+        configureView: configureView
     }
 }
 

@@ -1,3 +1,3 @@
 const View = require("./View");
 
-View().startView();
+View().configureView();

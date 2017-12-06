@@ -105,14 +105,22 @@ function View() {
             : updateLiveState();
     };
 
-    const updateLiveState = function () {
+    const updateLiveState = () => {
         if(hangman.hasLives()){
             livesText.innerHTML = "You have "+ hangman.getLives() + " lives!"
         }else{
             livesText.innerHTML = "You lost!";
             movieContainer.innerHTML = "";
             createSpanWith(hangman.getMovieTitle());
+            deleteAllButtonEventLister();
         }
+    };
+
+    const deleteAllButtonEventLister = () => {
+        let buttons = container.getElementsByTagName("button");
+        Array.prototype.map.call(buttons, (btn) => {
+            deleteEventListenerTo(btn);
+        });
     };
 
     const createSpanWith = (text) => {
@@ -189,7 +197,7 @@ function Hangman(moviesAndHints) {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
-        checkWordProgress, checkWordProgress,
+        checkWordProgress: checkWordProgress,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
         getLives: getLives,

@@ -106,9 +106,12 @@ function View() {
     };
 
     const checkWordProgress = () => {
-        hangman.checkWordProgress(encodeMovieTitle)
-            ? livesText.innerHTML = "You Win!"
-            : updateLiveState();
+        if(hangman.checkWordProgress(encodeMovieTitle)){
+            livesText.innerHTML = "You Win!";
+            deleteAllButtonEventLister();
+        }else{
+            updateLiveState()
+        }
     };
 
     const updateLiveState = () => {
@@ -127,6 +130,7 @@ function View() {
         Array.prototype.map.call(buttons, (btn) => {
             deleteEventListenerTo(btn);
         });
+        deleteEventListenerTo(hintBtn);
     };
 
     const createSpanWith = (text) => {

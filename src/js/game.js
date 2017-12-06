@@ -145,6 +145,7 @@ function View() {
         let hint = hangman.giveHint();
         if(hint){
             hintText.innerHTML = hint;
+            hangman.checkLives();
             updateLiveState();
         }else{
             hintBtn.value = "have not got more hints!";
@@ -214,6 +215,7 @@ function Hangman(moviesAndHints) {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
+        checkLives: checkLives,
         checkWordProgress: checkWordProgress,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,

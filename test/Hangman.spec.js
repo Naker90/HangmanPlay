@@ -1,10 +1,10 @@
 const expect = require("chai").expect;
-let Hangman = require("../js/Hangman");
+const Hangman = require("../src/js/Hangman");
 
 describe("Hangman Should", () => {
 
     const createHangman = (obj) => {
-        let hangman = new Hangman([obj]);
+        let hangman = Hangman([obj]);
         hangman.startGame();
         return hangman;
     };

@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "mocha \"./{,!(node_modules)/**/}*.spec.js\" --recursive",
-    "compileJS": "babel src --out-file dist/script-compied.js",
-    "copyStyle": "babel src/style --out-dir dist/styles --copy-files",
-    "compile": "npm run compileJS && npm run copyStyle",
+    "compileJS": "webpack src/js/*.js dist/script-compiled.js",
+    "copyStyle": "babel src/styles --out-dir dist/styles --copy-files",
+    "copyHTML": "cp src/index.html dist",
+    "compile": "npm run copyStyle && npm run copyHTML && npm run compileJS",
     "watch": "npm-watch"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "npm-watch": "^0.3.0"
+    "npm-watch": "^0.3.0",
+    "webpack": "^3.10.0"
   }
 }

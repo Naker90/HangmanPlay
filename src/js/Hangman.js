@@ -16,9 +16,11 @@ function Hangman(moviesAndHints) {
         generateEncodeMovieTitle();
     };
 
-    const hasChar = (char) => movie.title.indexOf(char) !== -1;
+    const movieTitleContain = (char) => movie.title.indexOf(char) !== -1;
     const replaceChar = (char) => {
-        if(hasChar(char)){
+        if(!movieTitleContain(char)){
+            checkLives();
+        }else{
             Array.prototype.forEach.call(movie.title, (movieTitleChar, index) => {
                 if(char === movieTitleChar){encodeMovieTitle[index] = char}
             });
@@ -35,19 +37,30 @@ function Hangman(moviesAndHints) {
     };
 
     const checkLives = () => (lives !== 0) ? lives-- : false;
+    const hasLives = () => lives > 0;
+
+    const checkWordProgress = () => {
+        let lessOverLetters = encodeMovieTitle.filter((letter) => {
+            if(letter === "_"){return letter}
+        });
+        return lessOverLetters.length;
+    };
+    const isWinner = () => checkWordProgress() === 0;
 
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
-    const getMaxLives = () => MAX_LIVES;
+    const getLives = () => lives;
 
     return {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
         checkLives: checkLives,
+        isWinner: isWinner,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
-        getMaxLives: getMaxLives
+        getLives: getLives,
+        hasLives: hasLives
     }
 }
 

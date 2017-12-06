@@ -8,10 +8,10 @@
   },
   "scripts": {
     "test": "mocha \"./{,!(node_modules)/**/}*.spec.js\" --recursive",
-    "compileJS": "webpack src/js/*.js dist/script-compiled.js",
+    "compileJS": "webpack src/js/*.js dist/bundle.js",
     "copyStyle": "babel src/styles --out-dir dist/styles --copy-files",
     "copyHTML": "cp src/index.html dist",
-    "transpile": "babel dist/script-compiled.js --out-file dist/script-compiled.js",
+    "transpile": "babel dist/bundle.js --out-file dist/bundle.js",
     "compile": "npm run copyStyle && npm run copyHTML && npm run compileJS && npm run transpile",
     "watch": "npm-watch"
   },

@@ -11,7 +11,8 @@
     "compileJS": "webpack src/js/*.js dist/script-compiled.js",
     "copyStyle": "babel src/styles --out-dir dist/styles --copy-files",
     "copyHTML": "cp src/index.html dist",
-    "compile": "npm run copyStyle && npm run copyHTML && npm run compileJS",
+    "transpile": "babel dist/script-compiled.js --out-file dist/script-compiled.js",
+    "compile": "npm run copyStyle && npm run copyHTML && npm run compileJS && npm run transpile",
     "watch": "npm-watch"
   },
   "repository": {

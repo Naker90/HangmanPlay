@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "mocha \"./{,!(node_modules)/**/}*.spec.js\" --recursive",
-    "compile": "babel -d src/dist/ src/js/",
+    "compileJS": "babel src --out-file dist/script-compied.js",
+    "copyStyle": "babel src/style --out-dir dist/styles --copy-files",
+    "compile": "npm run compileJS && npm run copyStyle",
     "watch": "npm-watch"
   },
   "repository": {

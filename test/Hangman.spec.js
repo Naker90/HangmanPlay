@@ -64,6 +64,22 @@ describe("Hangman Should", () => {
         expect(hangman.getEncodeMovieTitle()).to.deep.equal(expected);
     });
 
+    xit("decrement lives when user fail", () => {
+        let movieAndHints = {
+            title: "anyWord",
+            hints: [
+                "firstHint",
+                "secondHint",
+                "thirdHint"
+            ]
+        };
+        let hangman = createHangman(movieAndHints);
+
+        hangman.replaceChar("x");
+
+        expect(hangman).to.equal(9)
+    });
+
     it("return false when user ask more than hints quantity", () => {
         let movieAndHints = {
             title: "anyWord",

@@ -106,12 +106,12 @@ function Vista() {
     const updateLiveState = function () {
         (hangman.hasLives())
             ? livesText.innerHTML = "You have "+ hangman.getLives() + " lives!"
-            : livesText.innerHTML = "You have lost!";
+            : livesText.innerHTML = "You lost!";
     };
 
     return {
         generateBtnAlphabet: generateBtnAlphabet,
-        generateWord: updateWord
+        updateWord: updateWord
     }
 }
 
@@ -181,7 +181,7 @@ function Game() {
 
     const start = () => {
         document.addEventListener("DOMContentLoaded", vista.generateBtnAlphabet);
-        document.addEventListener("DOMContentLoaded", vista.generateWord);
+        document.addEventListener("DOMContentLoaded", vista.updateWord);
     };
 
     return {

@@ -67,6 +67,10 @@ footer {
     font-weight: bold;
 }
 
+.wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+}
 
 .text-to-left {
     text-align: left;

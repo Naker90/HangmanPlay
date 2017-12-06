@@ -1,5 +1,8 @@
+let Stickman = require("./Stickman");
+
 function Hangman(moviesAndHints) {
 
+    const stickman = Stickman();
     const MAX_LIVES = 10;
 
     let movie = {};
@@ -36,7 +39,14 @@ function Hangman(moviesAndHints) {
         return false;
     };
 
-    const checkLives = () => (lives !== 0) ? lives-- : false;
+    const checkLives = () => {
+        if(lives !== 0) {
+            lives--;
+            stickman.drawNext();
+        }else{
+            return false
+        }
+    };
     const hasLives = () => lives > 0;
 
     const checkWordProgress = () => {

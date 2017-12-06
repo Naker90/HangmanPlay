@@ -13,6 +13,8 @@
     "copyHTML": "cp src/index.html dist",
     "transpile": "babel dist/bundle.js --out-file dist/bundle.js",
     "compile": "npm run copyStyle && npm run copyHTML && npm run compileJS && npm run transpile",
+    "deploy:fast": "gh-pages -d dist -b gh-pages",
+    "deploy": "npm run compile && npm run deploy:fast";
     "watch": "npm-watch"
   },
   "repository": {

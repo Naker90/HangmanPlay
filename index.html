@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge" >
     <title>Hangman Play</title>
     <meta name="description" content="Hangman play"/>
     <meta name="robots" content="index, follow"/>
@@ -16,20 +15,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>HANGMAN PLAY</h1>
-        <h2>MOVIES TITLES</h2>
-        <h3>Use the alphabet below to guess the word, or click Hint to get a clue.</h3>
-        <div id="alphabet"></div>
-        <br>
-        <h2 id="lives">You have 10 lives.</h2>
-        <h3 id="hint-text"></h3>
-        <div id="movie-title"></div>
-        <canvas id="canvas" width="500" height="250"></canvas>
-        <div>
-            <input id="hint" type="button" value="Give me a hint!">
-            <input id="play" type="button" value="Play again!">
-        </div>
+        <header>
+            <h1>HANGMAN PLAY</h1>
+            <h2>MOVIES TITLES</h2>
+            <h3>Use the alphabet below to guess the word, or click Hint to get a clue.</h3>
+        </header>
+        <section>
+            <div id="alphabet"></div>
+            <br>
+            <h2 id="lives">You have 10 lives.</h2>
+            <h3 id="hint-text"></h3>
+            <div id="movie-title"></div>
+            <canvas id="canvas" width="500" height="250"></canvas>
+            <div>
+                <input id="hint" type="button" value="Give me a hint!">
+                <input id="play" type="button" value="Play again!">
+            </div>
+        </section>
     </div>
+    <footer>
+        <div class="footer">
+            <p>Made with &hearts; by Antonio Sánchez</p>
+        </div>
+    </footer>
 
     <script type="text/javascript" src="./bundle.js"></script>
 </body>

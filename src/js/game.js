@@ -29,7 +29,7 @@ const MoviesAndHints = [
 
 /*VISTA CLASS*/
 
-function Vista() {
+function View() {
 
     const hangman = Hangman(MoviesAndHints);
     hangman.startGame();
@@ -42,6 +42,11 @@ function Vista() {
     let livesText = document.getElementById("lives");
     let hintBtn = document.getElementById("hint");
     let playBtn = document.getElementById("play");
+
+    const startView = () => {
+        document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
+        document.addEventListener("DOMContentLoaded", updateWord);
+    };
 
     const generateBtnAlphabet = () => {
         Array.prototype.forEach.call(alphabet, (letter) => {
@@ -116,8 +121,7 @@ function Vista() {
     };
 
     return {
-        generateBtnAlphabet: generateBtnAlphabet,
-        updateWord: updateWord
+        startView: startView
     }
 }
 
@@ -187,22 +191,6 @@ function Hangman(moviesAndHints) {
     }
 }
 
-/*GAME CLASS*/
-
-function Game() {
-
-    const vista = Vista();
-
-    const start = () => {
-        document.addEventListener("DOMContentLoaded", vista.generateBtnAlphabet);
-        document.addEventListener("DOMContentLoaded", vista.updateWord);
-    };
-
-    return {
-        start: start
-    }
-}
-
 /*EXEC*/
 
-Game().start();
+View().startView();

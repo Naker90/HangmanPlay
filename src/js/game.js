@@ -43,7 +43,7 @@ function View() {
     let hintBtn = document.getElementById("hint");
     let playBtn = document.getElementById("play");
 
-    const startView = () => {
+    const configureView = () => {
         document.addEventListener("DOMContentLoaded", generateBtnAlphabet);
         document.addEventListener("DOMContentLoaded", updateWord);
         playBtn.addEventListener("click", reloadPage);
@@ -157,7 +157,7 @@ function View() {
     };
 
     return {
-        startView: startView
+        startView: configureView
     }
 }
 

@@ -4,8 +4,7 @@ const MoviesAndHints = require("./MoviesAndHints");
 
 function View() {
 
-    const stickman = Stickman();
-    const hangman = Hangman(MoviesAndHints);
+    const hangman = Hangman(MoviesAndHints, Stickman);
     hangman.startGame();
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';

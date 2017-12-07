@@ -1,6 +1,4 @@
-let Stickman = require("./Stickman");
-
-function Hangman(moviesAndHints) {
+function Hangman(moviesAndHints, Stickman) {
 
     const stickman = Stickman();
     const MAX_LIVES = 10;
@@ -59,6 +57,7 @@ function Hangman(moviesAndHints) {
 
     const getMovieTitle = () => movie.title;
     const getEncodeMovieTitle = () => encodeMovieTitle;
+    const getMaxLives = () => MAX_LIVES;
     const getLives = () => lives;
 
     return {
@@ -69,6 +68,7 @@ function Hangman(moviesAndHints) {
         isWinner: isWinner,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,
+        getMaxLives: getMaxLives,
         getLives: getLives,
         hasLives: hasLives
     }

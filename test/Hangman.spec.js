@@ -4,7 +4,14 @@ const Hangman = require("../src/js/Hangman");
 describe("Hangman Should", () => {
 
     const createHangman = (obj) => {
-        let hangman = Hangman([obj]);
+        const StickmanStub = () => {
+            const drawNext = () => {};
+            return {
+                drawNext: drawNext
+            }
+        };
+
+        let hangman = Hangman([obj], StickmanStub);
         hangman.startGame();
         return hangman;
     };
@@ -64,7 +71,7 @@ describe("Hangman Should", () => {
         expect(hangman.getEncodeMovieTitle()).to.deep.equal(expected);
     });
 
-    xit("decrement lives when user fail", () => {
+    it("decrement lives when user fail", () => {
         let movieAndHints = {
             title: "anyWord",
             hints: [
@@ -77,7 +84,7 @@ describe("Hangman Should", () => {
 
         hangman.replaceChar("x");
 
-        expect(hangman).to.equal(9)
+        expect(hangman.getLives()).to.equal(9)
     });
 
     it("return false when user ask more than hints quantity", () => {

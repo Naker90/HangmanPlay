@@ -84,7 +84,7 @@ describe("Hangman Should", () => {
 
         hangman.replaceChar("x");
 
-        expect(hangman.getLives()).to.equal(9)
+        expect(hangman.getLives()).to.equal(hangman.getMaxLives() - 1);
     });
 
     it("return false when user ask more than hints quantity", () => {

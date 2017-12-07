@@ -80,82 +80,15 @@
 /************************************************************************/
 /******/[
 /* 0 */
-/***/function (module, exports) {
-
-    function Stickman() {
-
-        var stickmanCounter = 0;
-        var canvas = document.getElementById("canvas");
-        var context = canvas.getContext('2d');
-        context.beginPath();
-        context.strokeStyle = '#ffffff';
-
-        var draw = function draw(pathFromX, pathFromY, pathToX, pathToY) {
-            context.moveTo(pathFromX, pathFromY);
-            context.lineTo(pathToX, pathToY);
-            context.stroke();
-        };
-
-        var part1 = function part1() {
-            return draw(0, 230, 500, 230);
-        };
-        var part2 = function part2() {
-            return draw(150, 230, 150, 20);
-        };
-        var part3 = function part3() {
-            return draw(150, 20, 300, 20);
-        };
-        var part4 = function part4() {
-            return draw(300, 20, 300, 60);
-        };
-        var head = function head() {
-            context.beginPath();
-            context.arc(300, 80, 20, 0, Math.PI * 2, true);
-            context.stroke();
-        };
-        var part5 = function part5() {
-            return draw(300, 100, 300, 160);
-        };
-        var part6 = function part6() {
-            return draw(300, 120, 260, 140);
-        };
-        var part7 = function part7() {
-            return draw(300, 120, 330, 140);
-        };
-        var part8 = function part8() {
-            return draw(300, 160, 280, 220);
-        };
-        var part9 = function part9() {
-            return draw(300, 160, 320, 220);
-        };
-
-        var drawFunctions = [part1, part2, part3, part4, head, part5, part6, part7, part8, part9];
-
-        var drawNext = function drawNext() {
-            drawFunctions[stickmanCounter]();
-            stickmanCounter++;
-        };
-
-        return {
-            drawNext: drawNext
-        };
-    }
-
-    module.exports = Stickman;
-
-    /***/
-},
-/* 1 */
 /***/function (module, exports, __webpack_require__) {
 
-    var Hangman = __webpack_require__(2);
-    var Stickman = __webpack_require__(0);
+    var Hangman = __webpack_require__(1);
+    var Stickman = __webpack_require__(2);
     var MoviesAndHints = __webpack_require__(3);
 
     function View() {
 
-        var stickman = Stickman();
-        var hangman = Hangman(MoviesAndHints);
+        var hangman = Hangman(MoviesAndHints, Stickman);
         hangman.startGame();
 
         var alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -289,12 +222,10 @@
 
     /***/
 },
-/* 2 */
-/***/function (module, exports, __webpack_require__) {
+/* 1 */
+/***/function (module, exports) {
 
-    var Stickman = __webpack_require__(0);
-
-    function Hangman(moviesAndHints) {
+    function Hangman(moviesAndHints, Stickman) {
 
         var stickman = Stickman();
         var MAX_LIVES = 10;
@@ -323,7 +254,7 @@
         };
         var replaceChar = function replaceChar(char) {
             if (!movieTitleContain(char)) {
-                checkLives();
+                decrementLives();
             } else {
                 Array.prototype.forEach.call(movie.title, function (movieTitleChar, index) {
                     if (char === movieTitleChar) {
@@ -342,7 +273,7 @@
             return false;
         };
 
-        var checkLives = function checkLives() {
+        var decrementLives = function decrementLives() {
             if (lives !== 0) {
                 lives--;
                 stickman.drawNext();
@@ -372,6 +303,9 @@
         var getEncodeMovieTitle = function getEncodeMovieTitle() {
             return encodeMovieTitle;
         };
+        var getMaxLives = function getMaxLives() {
+            return MAX_LIVES;
+        };
         var getLives = function getLives() {
             return lives;
         };
@@ -380,16 +314,83 @@
             startGame: startGame,
             replaceChar: replaceChar,
             giveHint: giveHint,
-            checkLives: checkLives,
+            checkLives: decrementLives,
             isWinner: isWinner,
             getMovieTitle: getMovieTitle,
             getEncodeMovieTitle: getEncodeMovieTitle,
+            getMaxLives: getMaxLives,
             getLives: getLives,
             hasLives: hasLives
         };
     }
 
     module.exports = Hangman;
+
+    /***/
+},
+/* 2 */
+/***/function (module, exports) {
+
+    function Stickman() {
+
+        var stickmanCounter = 0;
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        context.strokeStyle = '#ffffff';
+
+        var draw = function draw(pathFromX, pathFromY, pathToX, pathToY) {
+            context.moveTo(pathFromX, pathFromY);
+            context.lineTo(pathToX, pathToY);
+            context.stroke();
+        };
+
+        var part1 = function part1() {
+            return draw(0, 230, 500, 230);
+        };
+        var part2 = function part2() {
+            return draw(150, 230, 150, 20);
+        };
+        var part3 = function part3() {
+            return draw(150, 20, 300, 20);
+        };
+        var part4 = function part4() {
+            return draw(300, 20, 300, 60);
+        };
+        var part5 = function part5() {
+            context.beginPath();
+            context.arc(300, 80, 20, 0, Math.PI * 2, true);
+            context.stroke();
+        };
+        var part6 = function part6() {
+            return draw(300, 100, 300, 160);
+        };
+        var part7 = function part7() {
+            return draw(300, 120, 260, 140);
+        };
+        var part8 = function part8() {
+            return draw(300, 120, 330, 140);
+        };
+        var part9 = function part9() {
+            return draw(300, 160, 280, 220);
+        };
+        var part10 = function part10() {
+            return draw(300, 160, 320, 220);
+        };
+
+        var drawFunctions = [part1, part2, part3, part4, part5, part6, part7, part8, part9, part10];
+
+        var drawNext = function drawNext() {
+            drawFunctions[stickmanCounter]();
+            stickmanCounter++;
+        };
+
+        return {
+            drawNext: drawNext
+        };
+    }
+
+    module.exports = Stickman;
 
     /***/
 },
@@ -413,17 +414,17 @@
 /***/function (module, exports, __webpack_require__) {
 
     __webpack_require__(5);
-    __webpack_require__(2);
+    __webpack_require__(1);
     __webpack_require__(3);
-    __webpack_require__(0);
-    module.exports = __webpack_require__(1);
+    __webpack_require__(2);
+    module.exports = __webpack_require__(0);
 
     /***/
 },
 /* 5 */
 /***/function (module, exports, __webpack_require__) {
 
-    var View = __webpack_require__(1);
+    var View = __webpack_require__(0);
 
     View().configureView();
 

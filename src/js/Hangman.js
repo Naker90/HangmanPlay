@@ -20,7 +20,7 @@ function Hangman(moviesAndHints, Stickman) {
     const movieTitleContain = (char) => movie.title.indexOf(char) !== -1;
     const replaceChar = (char) => {
         if(!movieTitleContain(char)){
-            checkLives();
+            decrementLives();
         }else{
             Array.prototype.forEach.call(movie.title, (movieTitleChar, index) => {
                 if(char === movieTitleChar){encodeMovieTitle[index] = char}
@@ -37,7 +37,7 @@ function Hangman(moviesAndHints, Stickman) {
         return false;
     };
 
-    const checkLives = () => {
+    const decrementLives = () => {
         if(lives !== 0) {
             lives--;
             stickman.drawNext();
@@ -64,7 +64,7 @@ function Hangman(moviesAndHints, Stickman) {
         startGame: startGame,
         replaceChar: replaceChar,
         giveHint: giveHint,
-        checkLives: checkLives,
+        checkLives: decrementLives,
         isWinner: isWinner,
         getMovieTitle: getMovieTitle,
         getEncodeMovieTitle: getEncodeMovieTitle,

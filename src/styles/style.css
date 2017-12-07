@@ -1,18 +1,14 @@
-html {
-    margin-bottom: 0;
-}
-
 body {
     font-family: 'Indie Flower', arial, "Times New Roman";
     background-color: #464D5B;
     color: #ffffff;
     text-align: center;
-    padding-top: 20px;
 }
 
 h1 {
     font-size: 3em;
     font-weight: bold;
+    margin: 0 10px;
 }
 
 h2 {
@@ -54,6 +50,19 @@ button {
 canvas {
     margin: 20px 0;
     border: 1px dotted #ffffff;
+}
+
+header {
+    background-color: white;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #464D5B;
 }
 
 footer {

@@ -52,6 +52,7 @@ button {
 }
 
 canvas {
+    margin: 20px 0;
     border: 1px dotted #ffffff;
 }
 

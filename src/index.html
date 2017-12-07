@@ -20,17 +20,16 @@
         <div class="container">
             <h1>HANGMAN PLAY</h1>
             <h2>MOVIES TITLES</h2>
-            <h3>Use the alphabet below to guess the word, or click Hint to get a clue.</h3>
         </div>
     </header>
     <section>
         <div class="container">
-            <div id="alphabet"></div>
+            <canvas id="canvas" width="500" height="250"></canvas>
             <br>
             <h2 id="lives">You have 10 lives.</h2>
             <h3 id="hint-text"></h3>
             <div id="movie-title"></div>
-            <canvas id="canvas" width="500" height="250"></canvas>
+            <div id="alphabet"></div>
             <div>
                 <input id="hint" type="button" value="Give me a hint!">
                 <input id="play" type="button" value="Play again!">

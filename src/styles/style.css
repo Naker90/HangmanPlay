@@ -55,6 +55,17 @@ canvas {
     border: 1px dotted #ffffff;
 }
 
+footer {
+    width: 100%;
+    font-size: 18px;
+    margin-top: 30px;
+    padding-top: 20px;
+    position: absolute;
+    background-color: #ffffff;
+    color: #464D5B;
+    font-weight: bold;
+}
+
 .text-to-left {
     text-align: left;
 }

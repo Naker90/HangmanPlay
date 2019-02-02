@@ -50,6 +50,8 @@ button {
 canvas {
     margin: 20px 0;
     border: 1px dotted #ffffff;
+    width: 100%;
+    max-width: 500px;
 }
 
 header {

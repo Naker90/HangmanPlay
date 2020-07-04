@@ -1,3 +1,3 @@
 ## Hangman Play
 
-You can play here https://naker90.github.io/HangmanPlay/
+You can play here https://nakerdev.github.io/HangmanPlay/
